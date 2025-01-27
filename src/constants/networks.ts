@@ -11,8 +11,12 @@ export const CURRENT_MODE = ({
 console.log('Current Mode:', CURRENT_MODE);
 console.log('Network ID:', import.meta.env.VITE_NETWORK_ID);
 console.log('Available Environments:', environments.deployments[CURRENT_MODE]);
-console.log('Environment Config:', environments.environments[import.meta.env.VITE_NETWORK_ID || environments.deployments[CURRENT_MODE].default]);
 
+// 获取默认或指定的网络 ID
+const networkId = import.meta.env.VITE_NETWORK_ID || environments.deployments[CURRENT_MODE].default;
+// 安全地访问配置
+const selectedConfig = environments.environments[networkId as keyof typeof environments.environments];
+console.log('Environment Config:', selectedConfig);
 
 export const isMainnet = CURRENT_MODE === 'MAINNET';
 export const isTestnet = CURRENT_MODE === 'TESTNET';
