@@ -32,6 +32,12 @@ export const useTokenConfigs = (): {
   const selectedDydxChainId = useAppSelector(getSelectedDydxChainId);
   const tokensConfigs = TOKEN_CONFIG_MAP[selectedDydxChainId];
 
+  // 添加这些调试日志
+  console.log('Debug - selectedDydxChainId:', selectedDydxChainId);
+  console.log('Debug - TOKEN_CONFIG_MAP:', TOKEN_CONFIG_MAP);
+  console.log('Debug - tokensConfigs:', tokensConfigs);
+
+  
   return {
     tokensConfigs,
     usdcDenom: tokensConfigs[DydxChainAsset.USDC].denom,
